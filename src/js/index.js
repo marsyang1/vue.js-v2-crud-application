@@ -10,7 +10,7 @@ var router = new VueRouter({
     {path: '/product/:product_id/delete', component: ProductDelete, name: 'product-delete'},
     {path: '/user', component: ProductList},
     {path: '/user/:user_id', component: User, name: 'user'},
-    {path: '/test', component: ProductList},
+    {path: '/test', component: Test},
 ]});
 
 var Test = Vue.extend({
