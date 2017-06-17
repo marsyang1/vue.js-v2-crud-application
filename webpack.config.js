@@ -14,7 +14,8 @@ module.exports = {
     path: DEST,
     filename: 'bundle.js',
     publicPath: 'assets',
-  }
+  },
+  watch: true
 }
 
 // module.exports = {

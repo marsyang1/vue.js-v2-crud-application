@@ -24,7 +24,7 @@ export var ProductList = Vue.extend({
   computed : {
     filteredProducts: function () {
     var self = this;
-    console.log()
+    console.log('loading product')
     return self.products.filter(function (product) {
       return product.name.indexOf(self.searchKey) !== -1
     })

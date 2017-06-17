@@ -23,6 +23,12 @@
   <main id="app"></main>
 </div>
 
+<template id="test">
+    <section>
+        <span class="glyphicon glyphicon-plus">testsetsett</span>
+    </section>
+</template>
+
 <template id="product-list">
   <section>
   <div class="actions">
@@ -30,6 +36,7 @@
       <span class="glyphicon glyphicon-plus"></span>
       Add product
     </router-link>
+    <router-link class="btn btn-default" to="/test">Go to User</router-link>
   </div>
   <div class="filters row">
     <div class="form-group col-sm-3">
@@ -130,6 +137,144 @@
     <p>The action cannot be undone.</p>
     <button type="submit" class="btn btn-danger">Delete</button>
     <router-link to="'/'" class="btn btn-default">Cancel</router-link>
+  </form>
+</section>
+</template>
+
+<template id="user-list">
+  <section>
+  <div class="actions">
+    <router-link class="btn btn-default" :to="{path: '/add-product'}">
+      <span class="glyphicon glyphicon-plus"></span>
+      Add product
+    </router-link>
+    <router-link class="btn btn-default" to="/user">Go to User</router-link>
+  </div>
+  <div class="filters row">
+    <div class="form-group col-sm-3">
+      <label for="search-element">Product name</label>
+      <input v-model="searchKey" class="form-control" id="search-element" requred/>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th class="col-sm-2">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr v-for="product in filteredProducts">
+      <td>
+        <router-link :to="{name: 'product', params: {product_id: product.id}}">{{ product.name }}</router-link>
+      </td>
+      <td>{{ product.description }}</td>
+      <td>
+        {{ product.price }}
+        <span class="glyphicon glyphicon-euro" aria-hidden="true"></span>
+      </td>
+      <td>
+        <router-link class="btn btn-warning btn-xs" :to="{name: 'product-edit', params: {product_id: product.id}}">Edit</router-link>
+        <router-link class="btn btn-danger btn-xs" :to="{name: 'product-delete', params: {product_id: product.id}}">Delete</router-link>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  </section>
+  <!-- <section>
+  <div class="actions">
+    <router-link class="btn btn-default" :to="{path: '/add-user'}">
+      <span class="glyphicon glyphicon-plus"></span>
+      Add user
+    </router-link>
+    <router-link class="btn btn-default" to="/">Go to Product</router-link>
+  </div>
+  <div class="filters row">
+    <div class="form-group col-sm-3">
+      <label for="search-element">User name</label>
+      <input v-model="searchKey" class="form-control" id="search-element" requred/>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>UserId</th>
+      <th class="col-sm-2">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr v-for="user in filteredUsers">
+      <td>
+        <router-link :to="{name: 'user', params: {user_id: user.id}}">{{ user.name }}</router-link>
+      </td>
+      <td>{{ user.userId }}</td>
+      <td>
+        <router-link class="btn btn-warning btn-xs" :to="{name: 'user-edit', params: {user_id: user.id}}">Edit</router-link>
+        <router-link class="btn btn-danger btn-xs" :to="{name: 'user-delete', params: {user_id: user.id}}">Delete</router-link>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  </section> -->
+</template>
+
+<template id="add-user">
+    <section>
+  <h2>Add new user</h2>
+  <form v-on:submit="createUser">
+    <div class="form-group">
+      <label for="add-name">Name</label>
+      <input class="form-control" id="add-name" v-model="user.name" required/>
+    </div>
+    <div class="form-group">
+      <label for="add-userId">UserId</label>
+      <input class="form-control" id="add-userId" v-model="user.userId" required/>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    <router-link to="/user" class="btn btn-default">Cancel</router-link>
+  </form>
+</section>
+</template>
+
+<template id="user">
+    <section>
+      <h2>{{ user.name }}</h2>
+      <b>UserId: </b>
+      <div>{{ user.userId }}</div>
+      <br/>
+  <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+  <router-link to="/user">Back to user list</router-link>
+</section>
+</template>
+
+<template id="user-edit">
+    <section>
+  <h2>Edit user</h2>
+  <form v-on:submit="updateUser">
+    <div class="form-group">
+      <label for="edit-name">Name</label>
+      <input class="form-control" id="edit-name" v-model="user.name" required/>
+    </div>
+    <div class="form-group">
+      <label for="edit-description">Description</label>
+      <input class="form-control" id="add-userId" v-model="user.userId" required/>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <router-link to="/user" class="btn btn-default">Cancel</router-link>
+  </form>
+</section>
+</template>
+
+<template id="user-delete">
+    <section>
+  <h2>Delete user {{ user.name }}</h2>
+  <form v-on:submit="deleteUser">
+    <p>The action cannot be undone.</p>
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <router-link to="/user" class="btn btn-default">Cancel</router-link>
   </form>
 </section>
 </template>
