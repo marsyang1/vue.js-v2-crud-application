@@ -9,4 +9,5 @@ Uses vue.js v2.0 and vue-router v2.0
  - clone or download zip of this repo
  - `cd` to the upacked folder
  - run `npm install`
+ - run `webpack-dev-server --inline` or `python3 -m http.server`
  - run http server of your choice (eg [whs](https://github.com/gstack/watch-http-server) or [SimpleHTTPServer](https://docs.python.org/2/library/simplehttpserver.html))
